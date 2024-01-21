@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from icecream import ic
 from scipy.stats import norm
 
+################## Q1
+
 # surface roughness measurements
 x_apples = np.array([2.56, 3.01, 3.22, 3.44, 3.62, 3.03, 2.40, 
                      2.70, 2.58, 3.94, 2.76, 3.30, 2.92, 3.36, 
@@ -12,12 +14,14 @@ x_lemons = np.array([4.57, 4.12, 4.08, 4.64, 3.68, 4.28, 4.33,
                      3.90, 4.09, 3.53, 3.54, 4.04, 4.29, 5.03, 
                      3.73, 4.07, 3.97, 3.23, 3.82, 3.28])
 
+# calculate means and std
 apples_mean = np.mean(x_apples)
 lemons_mean = np.mean(x_lemons)
 
 apples_std = np.std(x_apples)
 lemons_std = np.std(x_lemons)
 
+# build pdf for each class
 pdf_apples = lambda x : norm.pdf(x, apples_mean, apples_std)
 pdf_lemons = lambda x : norm.pdf(x, lemons_mean, lemons_std)
 
@@ -35,3 +39,32 @@ def max_likelihood_classifier(x):
     print("\nMost likely a lemon\n")
 
 max_likelihood_classifier(obs_x)
+
+################ Q2
+# Prior Knowledge: 2000 lemons and 1000 apples
+
+n_apples = 1000
+n_lemons = 2000
+
+# priors
+P_apple = n_apples / (n_apples + n_lemons)
+P_lemon = n_lemons / (n_apples + n_lemons)
+
+# don't need marginal probability P(x) because it's the same for both
+# classes so it'll just cancel out
+
+def bayesian_classifier(x):
+  likelihood_apple = pdf_apples(x)
+  likelihood_lemon = pdf_lemons(x)
+
+  P_apple_given_x = likelihood_apple*P_apple
+  P_lemon_given_x = likelihood_lemon*P_lemon
+
+  if(P_apple_given_x > P_lemon_given_x):
+    print(f"\nMost likely an apple, with P(Apple|x=3.4) = {P_apple_given_x}\n")
+  elif(P_apple_given_x == P_lemon_given_x):
+    print("\nEqually likely to be apple or lemon")
+  else:
+    print(f"\nMost likely a lemon, with P(Lemon|x=3.4) = {P_lemon_given_x}\n")
+
+bayesian_classifier(obs_x)
