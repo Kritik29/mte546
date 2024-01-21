@@ -18,4 +18,20 @@ lemons_mean = np.mean(x_lemons)
 apples_std = np.std(x_apples)
 lemons_std = np.std(x_lemons)
 
+pdf_apples = lambda x : norm.pdf(x, apples_mean, apples_std)
+pdf_lemons = lambda x : norm.pdf(x, lemons_mean, lemons_std)
 
+obs_x = 3.4
+
+print(f"Likelihood of being an apple: {pdf_apples(obs_x)}\n")
+print(f"Likelihood of being a lemon: {pdf_lemons(obs_x)}\n")
+
+def max_likelihood_classifier(x):
+  if(pdf_apples(x) > pdf_lemons(x)):
+    print("\nMost likely an apple\n")
+  elif(pdf_apples(x) == pdf_lemons(x)):
+    print("\nEqually likely to be apple or lemon\n")
+  else:
+    print("\nMost likely a lemon\n")
+
+max_likelihood_classifier(obs_x)
