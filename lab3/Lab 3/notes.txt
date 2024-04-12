@@ -1,0 +1,14 @@
+there are 9 positions
+
+there are 4 sensors, each reporting the distance the block is away from the sensor
+
+for position 0 (from the diagram):
+need to find the average x position reported by the sensors (medium and long range)
+need to find the average y position reported by the sensors (the 2 short range sensors)
+
+channel 5 - medium
+channel 6 - long
+channel 7 - short
+channel 8 - short
+
+I will be defining a 4x9 matrix (4 rows for the mean values of IR sensor readings, 9 columns for each of the positions)

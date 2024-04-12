@@ -1,0 +1,69 @@
+[System]
+Name='asst5FIS'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=3
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='input1'
+Range=[0 0.3]
+NumMFs=3
+MF1='certain':'trapmf',[-0.113 -0.0125 0.05 0.12]
+MF2='moderate':'trimf',[0.05 0.15 0.25]
+MF3='uncertain':'trapmf',[0.18 0.25 0.313 0.412]
+
+[Input2]
+Name='input2'
+Range=[0 0.3]
+NumMFs=3
+MF1='certain':'trapmf',[-0.113 -0.0125 0.05 0.12]
+MF2='moderate':'trimf',[0.05 0.15 0.25]
+MF3='uncertain':'trapmf',[0.18 0.25 0.313 0.412]
+
+[Input3]
+Name='input3'
+Range=[0 0.3]
+NumMFs=3
+MF1='certain':'trapmf',[-0.113 -0.0125 0.05 0.12]
+MF2='moderate':'trimf',[0.05 0.15 0.25]
+MF3='uncertain':'trapmf',[0.18 0.25 0.313 0.412]
+
+[Output1]
+Name='W1'
+Range=[0 1]
+NumMFs=3
+MF1='low':'trimf',[-0.4 0 0.4]
+MF2='med':'trimf',[0.1 0.5 0.9]
+MF3='high':'trimf',[0.6 1 1.4]
+
+[Output2]
+Name='W2'
+Range=[0 1]
+NumMFs=3
+MF1='low':'trimf',[-0.4 0 0.4]
+MF2='med':'trimf',[0.1 0.5 0.9]
+MF3='high':'trimf',[0.6 1 1.4]
+
+[Output3]
+Name='W3'
+Range=[0 1]
+NumMFs=3
+MF1='low':'trimf',[-0.4 0 0.4]
+MF2='med':'trimf',[0.1 0.5 0.9]
+MF3='high':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 1 1, 2 2 2 (1) : 1
+3 1 1, 1 3 3 (1) : 1
+1 3 1, 3 1 3 (1) : 1
+1 1 3, 3 3 1 (1) : 1
+1 2 2, 3 2 2 (1) : 1
+2 1 2, 2 3 2 (1) : 1
+2 2 1, 2 2 3 (1) : 1
